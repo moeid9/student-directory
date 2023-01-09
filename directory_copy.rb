@@ -10,8 +10,14 @@ end
 def print(students)
     students.each.with_index(1) do |student,index|
         if student[:name].length < 12
-            puts "#{index}. #{student[:name]} (#{student[:cohort]} cohort)"
+            puts "#{student[:name]} (#{student[:cohort]} cohort)"
         end
+    end
+    ## reworked each statement
+    i = 0
+    while i < students.count
+        puts "#{students[i][:name]} (#{students[i][:cohort]})"
+        i += 1
     end
 end
 
