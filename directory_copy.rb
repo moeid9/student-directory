@@ -83,9 +83,9 @@ def input_students
     puts "Please enter the names of the students".center(@width)
     puts "To finish press return twice".center(@width)
     students = []
-    name = gets.chomp
+    name = gets.strip
     puts "Please give the country of birth of the student".center(@width)
-    country_of_birth = gets.chomp
+    country_of_birth = gets.strip
     puts "Please put the number of the cohort you would like to join (1-12)".center(@width)
     cohort = add_cohort
     while !name.empty? do
@@ -95,12 +95,12 @@ def input_students
         else
             puts "Now we have #{students.count} students".center(@width)
         end
-        name = gets.chomp
+        name = gets.strip
         if name.empty?
             break
         end
         puts "Please give the country of birth of the student".center(@width)
-        country_of_birth = gets.chomp
+        country_of_birth = gets.strip
         puts "Please put the number of the cohort you would like to join (1-12)".center(@width)
         cohort = add_cohort
         
