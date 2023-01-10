@@ -53,10 +53,25 @@ def print(students)
     #    end
     #end
     ## reworked each statement
-    i = 0
-    while i < students.count
-        puts "#{students[i][:name]} born in #{students[i][:country_of_birth]} (#{students[i][:cohort]})".center(@width)
-        i += 1
+    #i = 0
+    #while i < students.count
+    #    puts "#{students[i][:name]} born in #{students[i][:country_of_birth]} (#{students[i][:cohort]})".center(@width)
+    #    i += 1
+    #end
+    if students.empty?
+        puts "No students available".center(@width)
+    else
+        cohorts = students.map do |student|
+          student[:cohort]
+        end
+        cohorts.uniq.each do |cohort|
+          puts "#{cohort} cohort".center(@width)
+            students.each do |student|
+                if student[:cohort] == cohort
+                    puts student[:name].center(@width)
+                end
+            end
+        end
     end
 end
 
