@@ -16,7 +16,7 @@ def print(students)
     ## reworked each statement
     i = 0
     while i < students.count
-        puts "#{students[i][:name]} (#{students[i][:cohort]})"
+        puts "#{students[i][:name]} born in #{students[i][:country_of_birth]} (#{students[i][:cohort]})"
         i += 1
     end
 end
@@ -26,10 +26,17 @@ def input_students
     puts "To finish press return twice"
     students = []
     name = gets.chomp
+    puts "Please give the country of birth of the student"
+    country_of_birth = gets.chomp
     while !name.empty? do
-        students << {name: name, cohort: :november}
+        students << {name: name, cohort: :november, country_of_birth: country_of_birth}
         puts "Now we have #{students.count} students"
         name = gets.chomp
+        if name.empty?
+            break
+        end
+        puts "Please give the country of birth of the student"
+        country_of_birth = gets.chomp
     end
     students
 end
