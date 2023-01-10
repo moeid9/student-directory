@@ -1,4 +1,6 @@
-@width = 50 
+@width = 75
+
+
 def print_header
     puts "The students of Villains Academy".center(@width)
     puts "-------------".center(@width)
@@ -7,13 +9,49 @@ end
 def print_footer(students)
     puts "Overall, we have #{students.count} great students".center(@width)
 end
-
+def add_cohort
+    next_cohort = "February"
+    cohort = gets.chomp
+    case cohort
+      when "1"
+        cohort = "January"
+      when "2"
+        cohort = "February"
+      when "3"
+        cohort = "March"
+      when "4"
+        cohort = "April"
+      when "5"
+        cohort = "May"
+      when "6"
+        cohort = "June"
+      when "7"
+        cohort = "July"
+      when "8"
+        cohort = "August"
+      when "9"
+        cohort = "September"
+      when "10"
+        cohort = "October"
+      when "11"
+        cohort = "November"
+      when "12"
+        cohort = "December"
+      when ""
+        puts "No input, the upcoming #{next_cohort} cohort was assigned".center(@width)
+        cohort = next_cohort
+      else
+        puts "Wrong input , the upcoming #{next_cohort} cohort was assigned".center(@width)
+        cohort = next_cohort
+      end
+      return cohort
+end
 def print(students)
-    students.each.with_index(1) do |student,index|
-        if student[:name].length < 12
-            puts "#{student[:name]} (#{student[:cohort]} cohort)".center(@width)
-        end
-    end
+    #students.each.with_index(1) do |student,index|
+    #    if student[:name].length < 12
+    #        puts "#{student[:name]} (#{student[:cohort]} cohort)".center(@width)
+    #    end
+    #end
     ## reworked each statement
     i = 0
     while i < students.count
@@ -29,8 +67,10 @@ def input_students
     name = gets.chomp
     puts "Please give the country of birth of the student".center(@width)
     country_of_birth = gets.chomp
+    puts "Please put the number of the cohort you would like to join (1-12)".center(@width)
+    cohort = add_cohort
     while !name.empty? do
-        students << {name: name, cohort: :november, country_of_birth: country_of_birth}
+        students << {name: name, cohort: cohort, country_of_birth: country_of_birth}
         puts "Now we have #{students.count} students".center(@width)
         name = gets.chomp
         if name.empty?
@@ -38,6 +78,9 @@ def input_students
         end
         puts "Please give the country of birth of the student".center(@width)
         country_of_birth = gets.chomp
+        puts "Please put the number of the cohort you would like to join (1-12)".center(@width)
+        cohort = add_cohort
+        
     end
     students
 end
