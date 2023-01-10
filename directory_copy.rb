@@ -62,7 +62,7 @@ def print(students)
     #    puts "#{students[i][:name]} born in #{students[i][:country_of_birth]} (#{students[i][:cohort]})".center(@width)
     #    i += 1
     #end
-    if students.empty?
+    if students.empty? # used this condtional to prevent printing list if no students added
         puts "No students available".center(@width)
     else
         cohorts = students.map do |student|
@@ -70,11 +70,11 @@ def print(students)
         end
         cohorts.uniq.each do |cohort|
           puts "#{cohort} cohort".center(@width)
-            students.each do |student|
-                if student[:cohort] == cohort
-                    puts student[:name].center(@width)
-                end
+          students.each do |student|
+            if student[:cohort] == cohort
+                puts student[:name].center(@width)
             end
+          end
         end
     end
 end
