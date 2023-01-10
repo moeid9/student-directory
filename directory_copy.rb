@@ -7,7 +7,11 @@ def print_header
 end
 
 def print_footer(students)
-    puts "Overall, we have #{students.count} great students".center(@width)
+    if students.length == 1
+        puts "We have one great student".center(@width)
+    else
+        puts "Overall, we have #{students.count} great students".center(@width)
+    end
 end
 def add_cohort
     next_cohort = "February"
@@ -86,7 +90,11 @@ def input_students
     cohort = add_cohort
     while !name.empty? do
         students << {name: name, cohort: cohort, country_of_birth: country_of_birth}
-        puts "Now we have #{students.count} students".center(@width)
+        if students.length == 1
+            puts "We have one great student".center(@width)
+        else
+            puts "Now we have #{students.count} students".center(@width)
+        end
         name = gets.chomp
         if name.empty?
             break
