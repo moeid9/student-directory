@@ -82,6 +82,7 @@ def save_students
         file.puts csv_line
     end
     file.close
+    puts "Saved file successfully".center(@width).upcase
 end
 
 def load_students(filename = "students.csv")
@@ -91,6 +92,7 @@ def load_students(filename = "students.csv")
         add_student(name)
     end
     file.close
+    puts "LOADED #{filename} SUCCESSFULLY".center(@width)
 end
 
 def try_load_students
