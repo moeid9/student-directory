@@ -1,6 +1,6 @@
 @students = []
 @width = 75
-
+@default_filename = "students.csv"
 def divider
     puts "-------------".center(@width)
 end
@@ -25,8 +25,8 @@ end
 def print_menu
     puts "1. Input the students".center(@width)
     puts "2. Show the students".center(@width)
-    puts "3. Save the list to students.csv".center(@width)
-    puts "4. Load the list from students.csv".center(@width)
+    puts "3. Save the list to file".center(@width)
+    puts "4. Load the list from file".center(@width)
     puts "9. Exit".center(@width)
 end
 
@@ -56,7 +56,15 @@ def process(selection)
         when "3"
             save_students
         when "4"
-            load_students
+            puts "Please enter the file name (eg create.csv)"
+            puts "Leave empty to load default 'student.csv' file"
+            load_filename = gets.chomp
+            if load_filename.empty?
+                load_students
+            else
+                load_students(load_filename)
+            end
+            
         when "9"
             exit
         else
@@ -75,7 +83,12 @@ def input_students
     end
 end
 def save_students
-    file = File.open("students.csv", "w")
+    puts "Please enter filename"
+    filename = gets.chomp
+    if filename.empty?
+        filename = @default_filename
+    end
+    file = File.open(filename, "w")
     @students.each do |student|
         student_data = [student[:name], student[:cohort]]
         csv_line = student_data.join(",")
@@ -85,7 +98,7 @@ def save_students
     puts "Saved file successfully".center(@width).upcase
 end
 
-def load_students(filename = "students.csv")
+def load_students(filename = @default_filename)
     file = File.open(filename, "r")
     file.readlines.each do |line|
     name, cohort = line.chomp.split(',')
